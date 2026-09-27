@@ -63,3 +63,59 @@ def search_courses(keyword):
     return results
 
 print(search_courses("web"))    
+
+def enroll_student(student_id, course_code):
+    # 1. Kiểm tra sinh viên có tồn tại trong danh sách không
+    student_exists = any(s["id"] == student_id for s in students)
+    if not student_exists:
+        return False, "Sinh vien khong ton tai"
+
+    # 2. Kiểm tra các điều kiện đăng ký (Học phần tồn tại, còn chỗ, chưa đăng ký trùng)
+    ok, message = can_enroll(student_id, course_code)
+    if not ok:
+        return False, message
+
+    # 3. Tiến hành đăng ký thành công:
+    # 3a. Thêm bản ghi mới vào danh sách enrollments
+    enrollments.append({
+        "student_id": student_id,
+        "course_code": course_code
+    })
+
+    # 3b. Cập nhật số lượng enrolled của học phần
+    course = find_course(course_code)
+    course["enrolled"] += 1
+
+    return True, "Dang ky thanh cong"
+
+# --- BỘ KỊCH BẢN CHẠY THỬ (TEST CASES) ---
+print("=== KẾT QUẢ THỰC HIỆN CÁC TÌNH HUỐNG CHẠY THỬ ===")
+
+# Tình huống 1: Đăng ký thành công
+# Sinh viên 22000002 đăng ký INT2204 (môn tồn tại, còn chỗ, chưa đăng ký)
+status1, msg1 = enroll_student("22000002", "INT2204")
+print(f"TH1 (Đăng ký thành công): Status = {status1} | Message = '{msg1}'")
+
+# Tình huống 2: Đăng ký trùng
+# Sinh viên 22000001 đăng ký lại INT2204 (đã đăng ký từ trước)
+status2, msg2 = enroll_student("22000001", "INT2204")
+print(f"TH2 (Đăng ký trùng): Status = {status2} | Message = '{msg2}'")
+
+# Tình huống 3: Lớp đầy
+# Sinh viên 22000001 đăng ký INT2205 (capacity=2, enrolled=2)
+status3, msg3 = enroll_student("22000001", "INT2205")
+print(f"TH3 (Lớp đầy): Status = {status3} | Message = '{msg3}'")
+
+# Tình huống 4: Mã học phần không tồn tại
+# Sinh viên 22000001 đăng ký INT9999
+status4, msg4 = enroll_student("22000001", "INT9999")
+print(f"TH4 (Mã môn không tồn tại): Status = {status4} | Message = '{msg4}'")
+
+# Tình huống 5: Mã sinh viên không tồn tại
+# Sinh viên 99999999 đăng ký INT2204
+status5, msg5 = enroll_student("99999999", "INT2204")
+print(f"TH5 (Mã SV không tồn tại): Status = {status5} | Message = '{msg5}'")
+
+print("\n=== DỮ LIỆU SAU KHI CHẠY THỬ ===")
+print("Danh sách enrollments:", enrollments)
+print("Thông tin môn INT2204:", find_course("INT2204"))
