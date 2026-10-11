@@ -1,0 +1,687 @@
+{
+  "info": {
+    "_postman_id": "e44438bc-454a-5122-9c1c-8c886328d32a",
+    "name": "CourseHub API - Buoi 3",
+    "description": "Bo request Buoi 3. Chay 01 -> 10 theo thu tu: 07 tao du lieu, 10 xoa du lieu.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 - Health",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code la 200\", () => {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Response la JSON\", () => {",
+              "  pm.response.to.be.json;",
+              "});",
+              "pm.test(\"database = connected\", () => {",
+              "  pm.expect(pm.response.json().database).to.eql(\"connected\");",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "health"
+          ]
+        },
+        "description": "Kiem tra Backend va CSDL."
+      },
+      "response": []
+    },
+    {
+      "name": "02 - List courses",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code la 200\", () => {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Response la JSON\", () => {",
+              "  pm.response.to.be.json;",
+              "});",
+              "pm.test(\"Co 3 hoc phan\", () => {",
+              "  pm.expect(pm.response.json()).to.have.lengthOf(3);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/courses",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "courses"
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "03 - Search courses",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code la 200\", () => {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Response la JSON\", () => {",
+              "  pm.response.to.be.json;",
+              "});",
+              "pm.test(\"Chi con INT2204\", () => {",
+              "  pm.expect(pm.response.json().map(c => c.code)).to.eql([\"INT2204\"]);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/courses?q=web",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "courses"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "web"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "04 - Course detail",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code la 200\", () => {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Response la JSON\", () => {",
+              "  pm.response.to.be.json;",
+              "});",
+              "pm.test(\"credits = 3\", () => {",
+              "  pm.expect(pm.response.json().credits).to.eql(3);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/courses/INT2204",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "courses",
+            "INT2204"
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "05 - Available sections",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code la 200\", () => {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Response la JSON\", () => {",
+              "  pm.response.to.be.json;",
+              "});",
+              "pm.test(\"PY-01, WEB-01, WEB-02\", () => {",
+              "  pm.expect(pm.response.json().map(s => s.class_id)).to.eql([\"PY-01\", \"WEB-01\", \"WEB-02\"]);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/sections?available_only=true",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "sections"
+          ],
+          "query": [
+            {
+              "key": "available_only",
+              "value": "true"
+            }
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "06 - Student enrollments",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code la 200\", () => {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Response la JSON\", () => {",
+              "  pm.response.to.be.json;",
+              "});",
+              "pm.test(\"2 dong: DM-01, WEB-01\", () => {",
+              "  pm.expect(pm.response.json().map(e => e.class_section_id)).to.eql([\"DM-01\", \"WEB-01\"]);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/students/22000001/enrollments",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "students",
+            "22000001",
+            "enrollments"
+          ]
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "07 - Create enrollment",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code la 201\", () => {",
+              "  pm.response.to.have.status(201);",
+              "});",
+              "pm.test(\"Response la JSON\", () => {",
+              "  pm.response.to.be.json;",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/enrollments",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "enrollments"
+          ]
+        },
+        "description": "Tao du lieu: Hoang Nam dang ky WEB-01. Nho chay 10 de don du lieu.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"student_id\": \"22000004\",\n  \"class_section_id\": \"WEB-01\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "08 - Duplicate enrollment",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code la 409\", () => {",
+              "  pm.response.to.have.status(409);",
+              "});",
+              "pm.test(\"Response la JSON\", () => {",
+              "  pm.response.to.be.json;",
+              "});",
+              "pm.test(\"Thong bao trung\", () => {",
+              "  pm.expect(pm.response.json().detail).to.eql(\"Sinh vien da dang ky lop nay\");",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/enrollments",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "enrollments"
+          ]
+        },
+        "description": "Gui lai body cua 07 -> 409.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"student_id\": \"22000004\",\n  \"class_section_id\": \"WEB-01\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "09 - Invalid student_id (422)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code la 422\", () => {",
+              "  pm.response.to.have.status(422);",
+              "});",
+              "pm.test(\"Response la JSON\", () => {",
+              "  pm.response.to.be.json;",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/enrollments",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "enrollments"
+          ]
+        },
+        "description": "student_id khong du 8 ky tu -> Pydantic tra 422, chua chay SQL.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"student_id\": \"123\",\n  \"class_section_id\": \"WEB-01\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "10 - Delete enrollment",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code la 204\", () => {",
+              "  pm.response.to.have.status(204);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/enrollments/22000004/WEB-01",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "enrollments",
+            "22000004",
+            "WEB-01"
+          ]
+        },
+        "description": "Huy dang ky vua tao; tra bo demo ve 5 dang ky."
+      },
+      "response": []
+    },
+    {
+      "name": "Loi bo sung",
+      "description": "Cac truong hop loi o muc VII.6.",
+      "item": [
+        {
+          "name": "E1 - Student not found",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code la 404\", () => {",
+                  "  pm.response.to.have.status(404);",
+                  "});",
+                  "pm.test(\"Response la JSON\", () => {",
+                  "  pm.response.to.be.json;",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/enrollments",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "enrollments"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"student_id\": \"99999999\",\n  \"class_section_id\": \"WEB-01\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E2 - Class not found",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code la 404\", () => {",
+                  "  pm.response.to.have.status(404);",
+                  "});",
+                  "pm.test(\"Response la JSON\", () => {",
+                  "  pm.response.to.be.json;",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/enrollments",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "enrollments"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"student_id\": \"22000004\",\n  \"class_section_id\": \"NO-CLASS\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E3 - Missing field",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code la 422\", () => {",
+                  "  pm.response.to.have.status(422);",
+                  "});",
+                  "pm.test(\"Response la JSON\", () => {",
+                  "  pm.response.to.be.json;",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/enrollments",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "enrollments"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"student_id\": \"22000004\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E4 - Course not found",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code la 404\", () => {",
+                  "  pm.response.to.have.status(404);",
+                  "});",
+                  "pm.test(\"Response la JSON\", () => {",
+                  "  pm.response.to.be.json;",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/courses/UNKNOWN",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "courses",
+                "UNKNOWN"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "E5 - Delete again (404)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code la 404\", () => {",
+                  "  pm.response.to.have.status(404);",
+                  "});",
+                  "pm.test(\"Response la JSON\", () => {",
+                  "  pm.response.to.be.json;",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/enrollments/22000004/WEB-01",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "enrollments",
+                "22000004",
+                "WEB-01"
+              ]
+            },
+            "description": "Chay sau 10: dang ky da khong con."
+          },
+          "response": []
+        },
+        {
+          "name": "E6 - Sections after cleanup",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code la 200\", () => {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Response la JSON\", () => {",
+                  "  pm.response.to.be.json;",
+                  "});",
+                  "pm.test(\"WEB-01 tro lai 2/3\", () => {",
+                  "  const web01 = pm.response.json().find(s => s.class_id === \"WEB-01\");",
+                  "  pm.expect(web01.enrolled).to.eql(2);",
+                  "  pm.expect(web01.remaining).to.eql(1);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/sections",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "sections"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
