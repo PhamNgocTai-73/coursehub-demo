@@ -1,0 +1,120 @@
+{
+  "info": {
+    "_postman_id": "b4e10001-2026-4000-8000-coursehub004",
+    "name": "CourseHub - Buoi 4 Bai Tap (Bai 1 & Bai 2)",
+    "description": "Bo request Postman kiem thu Bai 1 (GET /enrollment-events) va Bai 2 (POST /demo/week04/force-rollback-demo)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Bai 1 - Nhat ky dang ky (GET /enrollment-events)",
+      "item": [
+        {
+          "name": "01. Lay lich su co du lieu (student_id=22000004)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/enrollment-events?student_id=22000004&skip=0&limit=20",
+              "host": ["{{base_url}}"],
+              "path": ["enrollment-events"],
+              "query": [
+                { "key": "student_id", "value": "22000004" },
+                { "key": "skip", "value": "0" },
+                { "key": "limit", "value": "20" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "02. Loc theo event_type=CREATED",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/enrollment-events?student_id=22000004&event_type=CREATED&skip=0&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["enrollment-events"],
+              "query": [
+                { "key": "student_id", "value": "22000004" },
+                { "key": "event_type", "value": "CREATED" },
+                { "key": "skip", "value": "0" },
+                { "key": "limit", "value": "10" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "03. Truong hop khong co du lieu (student_id=22000001)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/enrollment-events?student_id=22000001&skip=0&limit=20",
+              "host": ["{{base_url}}"],
+              "path": ["enrollment-events"],
+              "query": [
+                { "key": "student_id", "value": "22000001" },
+                { "key": "skip", "value": "0" },
+                { "key": "limit", "value": "20" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "04. Ca loi 400 - event_type khong hop le",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/enrollment-events?event_type=SAI_LOAI",
+              "host": ["{{base_url}}"],
+              "path": ["enrollment-events"],
+              "query": [
+                { "key": "event_type", "value": "SAI_LOAI" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "05. Ca loi 422 - limit vuot qua 100",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/enrollment-events?limit=101",
+              "host": ["{{base_url}}"],
+              "path": ["enrollment-events"],
+              "query": [
+                { "key": "limit", "value": "101" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bai 2 - Kiem thu rollback nhieu bang",
+      "item": [
+        {
+          "name": "01. Force Rollback Demo (22000004 - WEB-01)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"student_id\": \"22000004\",\n  \"class_section_id\": \"WEB-01\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/demo/week04/force-rollback-demo",
+              "host": ["{{base_url}}"],
+              "path": ["demo", "week04", "force-rollback-demo"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
