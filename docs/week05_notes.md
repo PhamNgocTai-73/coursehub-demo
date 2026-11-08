@@ -9,7 +9,7 @@
 
 ## Ban phac Figma
 
-- Link Figma: (dan link vao day sau khi ve xong)
+- Link Figma: https://www.figma.com/design/1z91zPSsZIyrCXIxrsPg6r/CourseHub-%E2%80%93-Bu%E1%BB%95i-5?node-id=10-4
 
 ## Ket qua quan sat (chay thuc te, 2026-11-08)
 
