@@ -7,7 +7,7 @@
     "dev": "vite --host 127.0.0.1 --port 5173 --strictPort",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1 --port 5173 --strictPort",
-    "test": "node --test tests/api.test.mjs"
+    "test": "node --test tests/api.test.mjs tests/solution.test.mjs"
   },
   "dependencies": {
     "react": "18.2.0",

@@ -1,9 +1,13 @@
-// Buoi 5 - Muc IX: App hoan chinh (phan 1-5)
+// Buoi 5 - Muc IX: App hoan chinh + LOI GIAI Bai 1 (StudentForm),
+// Bai 2 (bo loc hoc phan), Bai 3 (EventHistory)
 import { useEffect, useState } from "react";
 import { api } from "./api.js";
 import Notice from "./components/Notice.jsx";
 import SectionTable from "./components/SectionTable.jsx";
 import EnrollmentList from "./components/EnrollmentList.jsx";
+import StudentForm from "./components/StudentForm.jsx";
+import EventHistory from "./components/EventHistory.jsx";
+import { filterSections } from "./filters.js";
 
 export default function App() {
   const [draftId, setDraftId] = useState("22000004");
@@ -12,6 +16,7 @@ export default function App() {
   const [sections, setSections] = useState([]);
   const [enrollments, setEnrollments] = useState([]);
   const [search, setSearch] = useState("");
+  const [courseCode, setCourseCode] = useState("");
   const [onlyAvailable, setOnlyAvailable] = useState(false);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
@@ -92,16 +97,15 @@ export default function App() {
     }
   }
 
-  const keyword = search.trim().toLowerCase();
-  const rows = sections.map((section) => ({
-    ...section,
-    course_name: courses.find((course) => course.code === section.course_code)?.name
-      ?? section.course_code,
-    registered: enrollments.some((item) => item.class_section_id === section.class_id),
-  })).filter((row) => (
-    `${row.class_id} ${row.course_code} ${row.course_name}`.toLowerCase().includes(keyword)
-    && (!onlyAvailable || row.remaining > 0)
-  ));
+  const rows = filterSections(
+    sections.map((section) => ({
+      ...section,
+      course_name: courses.find((course) => course.code === section.course_code)?.name
+        ?? section.course_code,
+      registered: enrollments.some((item) => item.class_section_id === section.class_id),
+    })),
+    { keyword: search, courseCode, onlyAvailable },
+  );
   const disabled = loading || busy || Boolean(error);
 
   return (
@@ -115,20 +119,10 @@ export default function App() {
       <p className="demo-note">
         Môi trường thực hành. Nhập mã sinh viên để thử dữ liệu, không phải đăng nhập.
       </p>
-      <section className="panel">
-        <h2>1. Chọn sinh viên</h2>
-        <form className="student-form" onSubmit={chooseStudent}>
-          <label htmlFor="student-id">Mã sinh viên</label>
-          <input id="student-id" value={draftId} maxLength={8} required
-            inputMode="numeric" onChange={(e) => setDraftId(e.target.value)}
-            disabled={busy} />
-          <button type="submit" disabled={busy}>Xem đăng ký</button>
-          <button type="button" className="secondary" disabled={busy || loading}
-            onClick={() => setRefresh((value) => value + 1)}>Tải lại dữ liệu</button>
-        </form>
-        <p className="muted">Dữ liệu đang xem: <strong>{studentId}</strong>.
-          Mã mẫu: 22000001–22000004.</p>
-      </section>
+      <StudentForm draftId={draftId} onDraftChange={setDraftId}
+        onSubmit={chooseStudent}
+        onRefresh={() => setRefresh((value) => value + 1)}
+        busy={busy} loading={loading} studentId={studentId} />
       <Notice kind={notice.kind}>{notice.text}</Notice>
       <Notice kind="error">{error}</Notice>
       {loading && <Notice>Đang tải dữ liệu từ API...</Notice>}
@@ -140,6 +134,14 @@ export default function App() {
               <label htmlFor="search">Tìm lớp / học phần</label>
               <input id="search" value={search} placeholder="Ví dụ: web"
                 onChange={(e) => setSearch(e.target.value)} />
+              <label htmlFor="course-filter">Học phần</label>
+              <select id="course-filter" value={courseCode}
+                onChange={(e) => setCourseCode(e.target.value)}>
+                <option value="">Tất cả</option>
+                {courses.map((course) => (
+                  <option key={course.code} value={course.code}>{course.code}</option>
+                ))}
+              </select>
               <label className="check">
                 <input type="checkbox" checked={onlyAvailable}
                   onChange={(e) => setOnlyAvailable(e.target.checked)} />
@@ -156,6 +158,9 @@ export default function App() {
               onCancel={(id) => changeEnrollment(id, true)} />
           </section>
         </div>
+      )}
+      {!loading && !error && (
+        <EventHistory studentId={studentId} refresh={refresh} />
       )}
       <footer>Số chỗ và đăng ký được đọc từ API; Backend quyết định tính hợp lệ.</footer>
     </main>

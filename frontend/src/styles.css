@@ -1,3 +1,4 @@
+/* Buoi 5 - Muc VIII: giao dien */
 * { box-sizing: border-box; }
 body {
   margin: 0; background: #f2f5fa; color: #17283d;
@@ -73,3 +74,10 @@ footer { color: #63738a; font-size: 12px; padding: 3px 4px 18px; }
   .student-form input { flex: 1; }
   table { min-width: 550px; }
 }
+
+/* Bai 2/3: bo loc hoc phan va nut phan trang */
+select {
+  border: 1px solid #9dacbd; border-radius: 7px; padding: 9px 11px;
+  font: inherit; background: #fff;
+}
+select:focus { outline: 3px solid #83b6e8; outline-offset: 2px; }
