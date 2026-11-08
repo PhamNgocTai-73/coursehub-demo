@@ -1,0 +1,106 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" fill="#FFFFFF"/>
+
+  <!-- Header -->
+  <g id="Header_CourseHub">
+    <rect x="32" y="24" width="1216" height="68" rx="14" fill="#F8FAFC" stroke="#94A3B8" stroke-width="2" stroke-dasharray="8 6"/>
+    <text x="56" y="65" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#2D3A4B">CourseHub <tspan font-weight="500" fill="#3B4859">— Tra cứu và đăng ký lớp học phần</tspan></text>
+  </g>
+
+  <!-- Filter MaSinhVien -->
+  <g id="Filter_MaSinhVien">
+    <rect x="32" y="112" width="1216" height="88" rx="14" fill="#F8FAFC" stroke="#94A3B8" stroke-width="2" stroke-dasharray="8 6"/>
+    <text x="56" y="163" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#2D3A4B">Mã sinh viên</text>
+    <g id="Input_MaSV">
+      <rect x="196" y="132" width="128" height="48" rx="6" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5"/>
+      <text x="260" y="162" font-family="Inter, sans-serif" font-size="18" fill="#2D3A4B" text-anchor="middle">22000004</text>
+    </g>
+    <g id="Button_XemDangKy">
+      <rect x="344" y="132" width="154" height="48" rx="6" fill="#20588A"/>
+      <text x="421" y="162" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#FFFFFF" text-anchor="middle">Xem đăng ký</text>
+    </g>
+    <text x="520" y="162" font-family="Inter, sans-serif" font-size="17" fill="#64748B">Dữ liệu đang xem: 22000004 · Chọn dữ liệu demo, không phải đăng nhập</text>
+  </g>
+
+  <!-- Vung Thong Bao Thanh Cong (201) -->
+  <g id="Notice_DangKyThanhCong_201">
+    <rect x="32" y="220" width="1216" height="56" rx="10" fill="#E7F6ED" stroke="#9ED3B3" stroke-width="2"/>
+    <text x="56" y="254" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#205A3B">Đăng ký WEB-01 thành công. (HTTP 201 Created)</text>
+  </g>
+
+  <!-- Panel Danh Sach Lop Hoc Phan -->
+  <g id="Panel_DanhSachLopHocPhan">
+    <rect x="32" y="296" width="800" height="392" rx="14" fill="#F8FAFC" stroke="#94A3B8" stroke-width="2" stroke-dasharray="8 6"/>
+    <text x="56" y="336" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#2D3A4B">Danh sách lớp học phần</text>
+
+    <g id="Input_TimKiemLop">
+      <rect x="56" y="354" width="752" height="48" rx="6" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5"/>
+      <text x="74" y="384" font-family="Inter, sans-serif" font-size="18" fill="#64748B">Tìm lớp / học phần ...</text>
+    </g>
+
+    <!-- Table Lop Hoc Phan -->
+    <g id="Table_LopHocPhan">
+      <rect x="56" y="420" width="752" height="240" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+      <!-- Horizontal lines -->
+      <line x1="56" y1="468" x2="808" y2="468" stroke="#CBD5E1" stroke-width="1.5"/>
+      <line x1="56" y1="532" x2="808" y2="532" stroke="#CBD5E1" stroke-width="1.5"/>
+      <line x1="56" y1="596" x2="808" y2="596" stroke="#CBD5E1" stroke-width="1.5"/>
+      <!-- Vertical lines -->
+      <line x1="248" y1="420" x2="248" y2="660" stroke="#CBD5E1" stroke-width="1.5"/>
+      <line x1="468" y1="420" x2="468" y2="660" stroke="#CBD5E1" stroke-width="1.5"/>
+      <line x1="596" y1="420" x2="596" y2="660" stroke="#CBD5E1" stroke-width="1.5"/>
+
+      <!-- Header Row -->
+      <text x="72" y="450" font-family="Inter, sans-serif" font-size="18" font-weight="700" fill="#2D3A4B">Lớp</text>
+      <text x="264" y="450" font-family="Inter, sans-serif" font-size="18" font-weight="700" fill="#2D3A4B">Học phần</text>
+      <text x="484" y="450" font-family="Inter, sans-serif" font-size="18" font-weight="700" fill="#2D3A4B">Còn</text>
+      <text x="612" y="450" font-family="Inter, sans-serif" font-size="18" font-weight="700" fill="#2D3A4B">Thao tác</text>
+
+      <!-- Row 1: WEB-01 (Đã đăng ký, Còn 0) -->
+      <text x="72" y="506" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#2D3A4B">WEB-01</text>
+      <text x="264" y="506" font-family="Inter, sans-serif" font-size="18" fill="#2D3A4B">INT2204</text>
+      <text x="484" y="506" font-family="Inter, sans-serif" font-size="18" fill="#64748B">0</text>
+      <g id="Button_DaDangKy_WEB-01">
+        <rect x="612" y="480" width="136" height="38" rx="6" fill="#EDF0F4" stroke="#CBD5E1"/>
+        <text x="680" y="505" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#5B6775" text-anchor="middle">Đã đăng ký</text>
+      </g>
+
+      <!-- Row 2: RACE-01 (Còn 1, Đăng ký) -->
+      <text x="72" y="570" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#2D3A4B">RACE-01</text>
+      <text x="264" y="570" font-family="Inter, sans-serif" font-size="18" fill="#2D3A4B">INT2204</text>
+      <text x="484" y="570" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#1D6147">1</text>
+      <g id="Button_DangKy_RACE-01">
+        <rect x="612" y="544" width="116" height="38" rx="6" fill="#20588A"/>
+        <text x="670" y="569" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#FFFFFF" text-anchor="middle">Đăng ký</text>
+      </g>
+
+      <!-- Row 3: DM-01 (Còn 0, Hết chỗ) -->
+      <text x="72" y="634" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#2D3A4B">DM-01</text>
+      <text x="264" y="634" font-family="Inter, sans-serif" font-size="18" fill="#2D3A4B">INT2205</text>
+      <text x="484" y="634" font-family="Inter, sans-serif" font-size="18" fill="#64748B">0</text>
+      <g id="Button_HetCho_DM-01">
+        <rect x="612" y="608" width="116" height="38" rx="6" fill="#EDF0F4" stroke="#CBD5E1"/>
+        <text x="670" y="633" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#5B6775" text-anchor="middle">Hết chỗ</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Panel Lop Da Dang Ky -->
+  <g id="Panel_LopDaDangKy">
+    <rect x="864" y="296" width="384" height="392" rx="14" fill="#F8FAFC" stroke="#94A3B8" stroke-width="2" stroke-dasharray="8 6"/>
+    <text x="888" y="336" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#2D3A4B">Lớp đã đăng ký</text>
+    <text x="888" y="368" font-family="Inter, sans-serif" font-size="16" fill="#64748B">Sinh viên 22000004 · 1 lớp</text>
+
+    <g id="Item_WEB-01">
+      <rect x="888" y="388" width="336" height="128" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+      <text x="908" y="420" font-family="Inter, sans-serif" font-size="18" font-weight="700" fill="#2D3A4B">WEB-01</text>
+      <text x="908" y="446" font-family="Inter, sans-serif" font-size="15" fill="#52667C">Co so du lieu Web va he thong thong tin</text>
+      <g id="Button_HuyDangKy">
+        <rect x="908" y="462" width="140" height="40" rx="6" fill="#FFFFFF" stroke="#20588A" stroke-width="1.5"/>
+        <text x="978" y="488" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#20588A" text-anchor="middle">Hủy đăng ký</text>
+      </g>
+    </g>
+
+    <text x="888" y="552" font-family="Inter, sans-serif" font-size="16" fill="#64748B">Hiển thị từ API của sinh viên đang xem.</text>
+  </g>
+</svg>
